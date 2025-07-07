@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - HIXAA</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: white;
+            padding: 4rem 0;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .hero-image {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 2rem;
+            border-radius: 10px;
+        }
+
+        .hero-text {
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto;
+            color: #666;
+        }
+
+        /* Vision Mission Goal Cards */
+        .cards-section {
+            padding: 4rem 0;
+            background: #f8f9fa;
+        }
+
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+        }
+
+        .card h3 {
+            color: #1e3c72;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .card .subtitle {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .card p {
+            color: #555;
+            line-height: 1.8;
+        }
+
+        /* Values Section */
+        .values-section {
+            padding: 4rem 0;
+            background: white;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .value-item {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .value-item h3 {
+            color: #1e3c72;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        /* Video Scroller Section */
+        .video-scroller-section {
+            padding: 4rem 0;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #1e3c72;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #666;
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .video-scroller {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .video-track {
+            display: flex;
+            gap: 2rem;
+            transition: transform 0.3s ease;
+            padding: 1rem 0;
+        }
+
+        .video-item {
+            flex: 0 0 400px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .video-item:hover {
+            transform: scale(1.05);
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            height: 225px;
+            background: #000;
+            border-radius: 15px 15px 0 0;
+            overflow: hidden;
+        }
+
+        .video-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+            border-radius: 15px 15px 0 0;
+            position: relative;
+        }
+
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(30, 60, 114, 0.9), rgba(42, 82, 152, 0.8));
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 1rem;
+            z-index: 2;
+        }
+
+        .overlay-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .overlay-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 0.5rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .overlay-subtitle {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.9);
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .design-pattern {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 60px;
+            height: 60px;
+            opacity: 0.3;
+            z-index: 1;
+        }
+
+        .design-pattern::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 5px,
+                rgba(255,255,255,0.1) 5px,
+                rgba(255,255,255,0.1) 10px
+            );
+            border-radius: 50%;
+        }
+
+        .design-pattern::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 30px;
+            height: 30px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+        }
+
+        .video-item:hover .video-overlay {
+            background: linear-gradient(135deg, rgba(30, 60, 114, 0.7), rgba(42, 82, 152, 0.6));
+        }
+
+        .video-item:hover .overlay-icon {
+            transform: scale(1.1);
+            transition: transform 0.3s ease;
+        }
+
+        .video-content {
+            padding: 1.5rem;
+        }
+
+        .video-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #1e3c72;
+            margin-bottom: 0.5rem;
+        }
+
+        .video-description {
+            color: #666;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .scroll-controls {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .scroll-btn {
+            background: #1e3c72;
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s ease;
+        }
+
+        .scroll-btn:hover {
+            background: #2a5298;
+        }
+
+        .scroll-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        /* Founders Section */
+        .founders-section {
+            padding: 4rem 0;
+            background: white;
+        }
+
+        .founders-intro {
+            text-align: center;
+            margin-bottom: 3rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .founders-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .founder-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .founder-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .founder-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            overflow: hidden;
+        }
+
+        .founder-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .founder-name {
+            font-size: 1.5rem;
+            color: #1e3c72;
+            margin-bottom: 0.5rem;
+        }
+
+        .founder-title {
+            color: #666;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .founder-description {
+            color: #555;
+            line-height: 1.8;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 15px;
+            }
+            
+            .logo {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .video-item {
+                flex: 0 0 300px;
+            }
+            
+            .cards-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .founders-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">HIXAA</div>
+            <div class="tagline">EXCELLENCE IN AUTOMATION</div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <img src="https://hixaa.com/wp-content/uploads/2022/06/Screenshot.png" alt="HIXAA Technologies" class="hero-image">
+            <div class="hero-text">
+                HIXAA Technologies is a Custom Industrial Automation Technology and Services Company headquartered in Nagpur, Maharashtra, India with additional offices located in Pune. It has grown to a team of 20+ consultants & employees in the last couple of years. We provide Internet of Things, System Integration using LabView, Industrial Internet of Things, Embedded System, Product Design and Development Services to companies of various Industries.
+            </div>
+        </div>
+    </section>
+
+    <!-- Vision Mission Goal Cards -->
+    <section class="cards-section">
+        <div class="container">
+            <div class="cards-container">
+                <div class="card">
+                    <h3>Our Vision</h3>
+                    <div class="subtitle">HIXAA EXCELLENCE IN AUTOMATION</div>
+                    <p>To be an Innovative Solution Provider in Industrial Automation with Highly Efficient, Accurate and Bug Free Systems.</p>
+                </div>
+                <div class="card">
+                    <h3>Our Mission</h3>
+                    <div class="subtitle">HIXAA EXCELLENCE IN AUTOMATION</div>
+                    <p>To be the world-class Industrial Automation and System Integration Company</p>
+                </div>
+                <div class="card">
+                    <h3>Our Goal</h3>
+                    <div class="subtitle">HIXAA EXCELLENCE IN AUTOMATION</div>
+                    <p>To provide Innovative Industrial Automation Solutions that Maximize Efficiency, Ensure Safety, and Deliver Precision</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="values-section">
+        <div class="container">
+            <div class="values-grid">
+                <div class="value-item">
+                    <h3>Trust</h3>
+                    <p>We must believe in our employees and other stakeholders</p>
+                </div>
+                <div class="value-item">
+                    <h3>Courage</h3>
+                    <p>We shall embrace new ideas and businesses</p>
+                </div>
+                <div class="value-item">
+                    <h3>Commitment</h3>
+                    <p>We shall stand by our promises and adhere to high standards of business</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Scroller Section -->
+    <section class="video-scroller-section">
+        <div class="container">
+            <h2 class="section-title">Our Work in Action</h2>
+            <p class="section-subtitle">
+                Discover how HIXAA's innovative automation solutions are transforming industries. From IoT implementations to complex system integrations, see our expertise in motion.
+            </p>
+            
+            <div class="video-scroller">
+                <div class="video-track" id="videoTrack">
+                    <div class="video-item">
+                        <div class="video-container">
+                            <div class="video-placeholder">▶</div>
+                            <div class="design-pattern"></div>
+                            <div class="video-overlay">
+                                <div class="overlay-icon">🔗</div>
+                                <div class="overlay-title">Industrial IoT</div>
+                                <div class="overlay-subtitle">Smart Solutions</div>
+                            </div>
+                        </div>
+                        <div class="video-content">
+                            <div class="video-title">Industrial IoT Solutions</div>
+                            <div class="video-description">Experience how our IoT implementations are revolutionizing manufacturing processes across various industries.</div>
+                        </div>
+                    </div>
+                    
+                    <div class="video-item">
+                        <div class="video-container">
+                            <div class="video-placeholder">▶</div>
+                            <div class="design-pattern"></div>
+                            <div class="video-overlay">
+                                <div class="overlay-icon">⚙️</div>
+                                <div class="overlay-title">LabVIEW Integration</div>
+                                <div class="overlay-subtitle">System Architecture</div>
+                            </div>
+                        </div>
+                        <div class="video-content">
+                            <div class="video-title">LabVIEW System Integration</div>
+                            <div class="video-description">Watch our expert team design and implement complex automation systems using LabVIEW technology.</div>
+                        </div>
+                    </div>
+                    
+                    <div class="video-item">
+                        <div class="video-container">
+                            <div class="video-placeholder">▶</div>
+                            <div class="design-pattern"></div>
+                            <div class="video-overlay">
+                                <div class="overlay-icon">🔧</div>
+                                <div class="overlay-title">Embedded Systems</div>
+                                <div class="overlay-subtitle">Hardware Solutions</div>
+                            </div>
+                        </div>
+                        <div class="video-content">
+                            <div class="video-title">Embedded System Development</div>
+                            <div class="video-description">Discover our cutting-edge embedded solutions that power next-generation industrial applications.</div>
+                        </div>
+                    </div>
+                    
+                    <div class="video-item">
+                        <div class="video-container">
+                            <div class="video-placeholder">▶</div>
+                            <div class="design-pattern"></div>
+                            <div class="video-overlay">
+                                <div class="overlay-icon">🎨</div>
+                                <div class="overlay-title">Product Design</div>
+                                <div class="overlay-subtitle">Innovation & Development</div>
+                            </div>
+                        </div>
+                        <div class="video-content">
+                            <div class="video-title">Product Design & Development</div>
+                            <div class="video-description">From concept to completion, see how we bring innovative automation products to life.</div>
+                        </div>
+                    </div>
+                    
+                    <div class="video-item">
+                        <div class="video-container">
+                            <div class="video-placeholder">▶</div>
+                            <div class="design-pattern"></div>
+                            <div class="video-overlay">
+                                <div class="overlay-icon">⭐</div>
+                                <div class="overlay-title">Client Success</div>
+                                <div class="overlay-subtitle">Proven Results</div>
+                            </div>
+                        </div>
+                        <div class="video-content">
+                            <div class="video-title">Client Success Stories</div>
+                            <div class="video-description">Hear from our satisfied clients across defense, semiconductor, energy, and automotive sectors.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="scroll-controls">
+                <button class="scroll-btn" id="prevBtn" onclick="scrollVideos(-1)">← Previous</button>
+                <button class="scroll-btn" id="nextBtn" onclick="scrollVideos(1)">Next →</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Founders Section -->
+    <section class="founders-section">
+        <div class="container">
+            <h2 class="section-title">Meet Our Founders</h2>
+            <div class="founders-intro">
+                <p>Our automation platform is inspired by the huge potential of people. Our founders harped constantly on how to unleash their true potential, how to liberate them from the tedium of the mundane, how to free them up so they can think faster, create faster, innovate faster. While we enable enterprises to gear up for tomorrow's opportunities, we are equally excited to bring out the best in our people and empower them to achieve tomorrow's possibilities today.</p>
+            </div>
+            
+            <div class="founders-grid">
+                <div class="founder-card">
+                    <div class="founder-image">
+                        <img src="https://hixaa.com/wp-content/uploads/2024/10/Harish-Zamabni-Photo-768x768.jpg" alt="Harish Zambani">
+                    </div>
+                    <div class="founder-name">Harish Zambani</div>
+                    <div class="founder-title">Director - Business Development</div>
+                    <div class="founder-description">
+                        Highly Energetic and Motivational Personality. A Passionate Engineer with 12+ Years Industrial Experience in Sales & Client Relationship Management Passionate for Business Expansion and Strategies. He takes care of all Business Operations in HIXAA including Project Planning, Agile Methodology Implementation, Scrum Meetings, Pre & Post Sales.
+                    </div>
+                </div>
+                
+                <div class="founder-card">
+                    <div class="founder-image">
+                        <img src="https://hixaa.com/wp-content/uploads/2024/10/Atul-Ghimade-Photo-768x768.jpg" alt="Atul Ghumade">
+                    </div>
+                    <div class="founder-name">Atul Ghumade</div>
+                    <div class="founder-title">Director - System Architect</div>
+                    <div class="founder-description">
+                        An Action Taker Passionate System Integrator. Highly Motivated & Innovative Industrial Solution Provider with 10+ Years of Extensive Working Experience in Industrial Automation for Defense, Semiconductor, Energy, Cement, Automotive & Biomedical Verticals. Highly Active in LabVIEW Community with focus on System Architecture, Project Design & Development, R&D. He believes in knowledge sharing.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        let currentScroll = 0;
+        const scrollAmount = 420; // Width of one video item + gap
+        
+        function scrollVideos(direction) {
+            const track = document.getElementById('videoTrack');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            
+            const maxScroll = track.scrollWidth - track.parentElement.clientWidth;
+            
+            currentScroll += direction * scrollAmount;
+            
+            // Constrain scroll within bounds
+            if (currentScroll < 0) {
+                currentScroll = 0;
+            } else if (currentScroll > maxScroll) {
+                currentScroll = maxScroll;
+            }
+            
+            track.style.transform = `translateX(-${currentScroll}px)`;
+            
+            // Update button states
+            prevBtn.disabled = currentScroll === 0;
+            nextBtn.disabled = currentScroll >= maxScroll;
+        }
+        
+        // Initialize button states
+        document.addEventListener('DOMContentLoaded', function() {
+            const prevBtn = document.getElementById('prevBtn');
+            prevBtn.disabled = true;
+        });
+        
+        // Add click events to video overlays
+        document.querySelectorAll('.video-overlay').forEach(overlay => {
+            overlay.addEventListener('click', function() {
+                // In a real implementation, this would open a video player
+                const title = this.querySelector('.overlay-title').textContent;
+                alert(`${title} video player would open here. Replace with actual video URLs.`);
+            });
+        });
+        
+        // Auto-scroll functionality (optional)
+        let autoScrollInterval;
+        
+        function startAutoScroll() {
+            autoScrollInterval = setInterval(() => {
+                const track = document.getElementById('videoTrack');
+                const maxScroll = track.scrollWidth - track.parentElement.clientWidth;
+                
+                if (currentScroll >= maxScroll) {
+                    currentScroll = 0;
+                } else {
+                    scrollVideos(1);
+                }
+            }, 5000);
+        }
+        
+        function stopAutoScroll() {
+            clearInterval(autoScrollInterval);
+        }
+        
+        // Start auto-scroll on page load
+        // startAutoScroll();
+        
+        // Stop auto-scroll when user interacts
+        document.querySelector('.video-scroller').addEventListener('mouseenter', stopAutoScroll);
+        document.querySelector('.video-scroller').addEventListener('mouseleave', startAutoScroll);
+    </script>
+</body>
+</html>
